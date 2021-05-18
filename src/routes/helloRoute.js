@@ -1,4 +1,5 @@
-import { MongoClient } from 'mongodb';
+import pkg from 'mongodb';
+const { MongoClient } = pkg;
 
 export const helloRoute = {
   method: 'get',
