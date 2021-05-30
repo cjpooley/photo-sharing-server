@@ -1,9 +1,10 @@
 import express from 'express';
-import bodyParser from 'body-parser';
-import { db } from './db/index.js';
-import { routes } from './routes/index.js';
+import { db } from './db';
+import { routes, protectRouteMiddleware } from './routes';
 import admin from 'firebase-admin';
 import fs from 'fs'; 
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 let credentials = JSON.parse(fs.readFileSync('src/credentials.json', 'utf-8'));
 
@@ -13,10 +14,12 @@ admin.initializeApp({
 
 const app = express();
 
-app.use(bodyParser.json());
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+app.use(express.static(path.join(__dirname ,'uploads')));
+app.use(express.json());
 
 routes.forEach((route) => {
-  app[route.method](route.path, route.handler);
+  app[route.method](route.path, protectRouteMiddleware, route.handler);
 });
 
 const start = async () => {

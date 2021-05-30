@@ -1,1 +1,2 @@
-export { db } from './db.js';
+export { db } from './db';
+export { getPhotosForUser } from './getPhotosForUser';
