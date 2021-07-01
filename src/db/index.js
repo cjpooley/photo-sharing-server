@@ -1,2 +1,9 @@
 export { db } from './db';
 export { getPhotosForUser } from './getPhotosForUser';
+export { getSharedPhotosForUser } from './getSharedPhotosForUser';
+export { getPopulatedPhoto } from './getPopulatedPhoto';
+export { getSanitizedPhoto } from './getSanitizedPhoto';
+export { getUserOwnsPhoto } from './getUserOwnsPhoto';
+export { getPhotoIsSharedWithUser } from './getPhotoIsSharedWithUser';
+export { addNewPhoto } from './addNewPhoto';
+export { sharePhotoWithUserByEmail } from './sharePhotoWithUserByEmail';
