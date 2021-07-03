@@ -1,0 +1,11 @@
+{
+  "photo-server": {
+    "dbConfig": {
+      "host": "localhost",
+      "port": 27017
+    },
+    "serverConfig": {
+      "port": 8080
+    }
+  }
+}

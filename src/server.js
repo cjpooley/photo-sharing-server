@@ -6,6 +6,7 @@ import fileUpload from 'express-fileupload';
 import fs from 'fs'; 
 import path from 'path';
 import { fileURLToPath } from 'url';
+import config from 'config';
 
 let credentials = JSON.parse(fs.readFileSync('src/credentials.json', 'utf-8'));
 
@@ -25,9 +26,12 @@ routes.forEach((route) => {
 });
 
 const start = async () => {
-  await db.connect('mongodb://localhost:27017');
-  app.listen(8080, () => {
-    console.log('Server is listening on port 8080');
+  const dbHost = config.get('photo-server.dbConfig.host');
+  const dbPort = config.get('photo-server.dbConfig.port');
+  await db.connect('mongodb://' + dbHost + ':' + dbPort);
+  const serverPort = config.get('photo-server.serverConfig.port');
+  app.listen(serverPort, () => {
+    console.log('Server is listening on port ' + serverPort);
   });
 }
 

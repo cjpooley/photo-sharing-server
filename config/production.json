@@ -1,0 +1,7 @@
+{
+  "photo-server": {
+    "dbConfig": {
+      "host": "photo-db"
+    }
+  }
+}
